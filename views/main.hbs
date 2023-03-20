@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js CRUD</title>
+</head>
+<body>
+     <h1>Node.js CRUD</h1>
+     {{message}}
+     <br>
+     {{#if edit_id}}
+     <h3>Edit</h3>
+    <form method="post" action="/update_cinema/{{edit_id}}">
+        <label for="">Movie</label>
+        <input type="text" name="movie" value="{{edit_cinema.movie}}">
+        <label for="">Director</label>
+        <input type="text" name="director" value="{{edit_cinema.director}}">
+        <input type="submit">
+    </form><br><br>
+    {{else}}
+
+     <h3>Create</h3>
+    <form method="post" action="/store_cinema">
+        <label for="">Movie</label>
+        <input type="text" name="movie">
+        <label for="">Director</label>
+        <input type="text" name="director">
+        <input type="submit">
+    </form>
+    <br><br>
+    {{/if}}
+
+     <ul>
+        {{#each cinema}}
+        <li>
+            {{this.movie}} - {{this.director}} <a href="/?edit_id={{this._id}}">Edit</a> <a href="/?delete_id={{this._id}}" onclick="return confirm('Are you sure want to delete')">Delete</a>
+        </li>
+        {{/each}}
+     </ul>       
+</body>
+</html>
